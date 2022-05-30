@@ -2,7 +2,7 @@
 {
     public class MS_ORGANIZATION
     {
-        public long ORGANIZATION_ID { get; set; }
+        public long Id { get; set; }
         public int ORGANIZATION_CD { get; set; }
         public string? ORGANIZATION_NAME { get; set; }
 
@@ -15,6 +15,6 @@
         public virtual ICollection<Department> Children { get; set; }
 
         // 1対多: Department エンティティには複数の User エンティティが属する
-        public virtual ICollection<MS_EMPLOYEE> EMPLOYEEs { get; set; }
+        public virtual ICollection<Employee> EMPLOYEEs { get; set; }
     }
 }
