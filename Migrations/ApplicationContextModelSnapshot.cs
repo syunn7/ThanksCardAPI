@@ -17,7 +17,7 @@ namespace ThanksCardAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -34,7 +34,6 @@ namespace ThanksCardAPI.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<long?>("ParentId")
@@ -47,6 +46,67 @@ namespace ThanksCardAPI.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("ThanksCardAPI.Models.MS_EMPLOYEE", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+
+                    b.Property<string>("EMPLOYEE_CD")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EMPLOYEE_NAME")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FURIGANA")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("ORGANIZATIONId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ORGANIZATION_ID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PASSWORD")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ORGANIZATIONId");
+
+                    b.ToTable("EMPOLOYEEs");
+                });
+
+            modelBuilder.Entity("ThanksCardAPI.Models.MS_ORGANIZATION", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<int>("Organiztioncd")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Organiztionname")
+                        .HasColumnType("text");
+
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("ORGANIZATIONs");
+                });
+
             modelBuilder.Entity("ThanksCardAPI.Models.Tag", b =>
                 {
                     b.Property<long>("Id")
@@ -56,7 +116,6 @@ namespace ThanksCardAPI.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -73,17 +132,15 @@ namespace ThanksCardAPI.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Body")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedDateTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<long>("FromId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<long>("ToId")
@@ -136,11 +193,9 @@ namespace ThanksCardAPI.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -153,6 +208,26 @@ namespace ThanksCardAPI.Migrations
             modelBuilder.Entity("ThanksCardAPI.Models.Department", b =>
                 {
                     b.HasOne("ThanksCardAPI.Models.Department", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("ThanksCardAPI.Models.MS_EMPLOYEE", b =>
+                {
+                    b.HasOne("ThanksCardAPI.Models.MS_ORGANIZATION", "ORGANIZATION")
+                        .WithMany("EMPLOYEEs")
+                        .HasForeignKey("ORGANIZATIONId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ORGANIZATION");
+                });
+
+            modelBuilder.Entity("ThanksCardAPI.Models.MS_ORGANIZATION", b =>
+                {
+                    b.HasOne("ThanksCardAPI.Models.MS_ORGANIZATION", "Parent")
                         .WithMany("Children")
                         .HasForeignKey("ParentId");
 
@@ -211,6 +286,13 @@ namespace ThanksCardAPI.Migrations
                     b.Navigation("Children");
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("ThanksCardAPI.Models.MS_ORGANIZATION", b =>
+                {
+                    b.Navigation("Children");
+
+                    b.Navigation("EMPLOYEEs");
                 });
 
             modelBuilder.Entity("ThanksCardAPI.Models.Tag", b =>

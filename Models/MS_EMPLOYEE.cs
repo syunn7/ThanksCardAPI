@@ -2,7 +2,7 @@
 {
     public class MS_EMPLOYEE
     {
-        public long EMPLOYEE_ID { get; set; }
+        public long ID { get; set; }
         public string EMPLOYEE_CD { get; set; }
         public string EMPLOYEE_NAME { get; set; }
         public string FURIGANA { get; set; }
