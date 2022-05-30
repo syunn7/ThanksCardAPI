@@ -2,7 +2,7 @@
 {
     public class MS_ORGANIZATION
     {
-        public long ORGANIZATION_ID { get; set; }
+        public long Id { get; set; }
         public int ORGANIZATION_CD { get; set; }
         public string? ORGANIZATION_NAME { get; set; }
 
