@@ -15,6 +15,6 @@
         public virtual ICollection<Department> Children { get; set; }
 
         // 1対多: Department エンティティには複数の User エンティティが属する
-        public virtual ICollection<MS_EMPLOYEE> EMPLOYEE { get; set; }
+        public virtual ICollection<MS_EMPLOYEE> EMPLOYEEs { get; set; }
     }
 }
