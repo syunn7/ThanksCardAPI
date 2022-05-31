@@ -11,7 +11,7 @@ namespace ThanksCardAPI.Models
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<MS_EMPLOYEE> EMPOLOYEEs { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<ThanksCard> ThanksCards { get; set; }
         public DbSet<MS_CLASSIFICATION> Classifications { get; set; }
