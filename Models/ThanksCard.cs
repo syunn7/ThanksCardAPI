@@ -5,13 +5,16 @@ namespace ThanksCardAPI.Models
     {
         public long Id { get; set; }
         public string Title { get; set; }
-        public string Body { get; set; }
-        public long FromId { get; set; }
-        public virtual User From { get; set; }
-        public long ToId { get; set; }
-        public virtual User To { get; set; }
-        public DateTime CreatedDateTime { get; set; }
+        public int ToId { get; set; }
+        public virtual Employee To { get; set; }
+        public int FromId { get; set; }
+        public virtual Employee From { get; set; }
+        public string Contents { get; set; }
+        public DateTime Date { get; set; }
+        public string Kidoku { get; set; }
+        public string Check { get; set; }
+        public string Comment { get; set; }
 
-        public virtual ICollection<ThanksCardTag> ThanksCardTags { get; set; }
+        public virtual ICollection<ThanksCardClassification> ThanksCardClassifications { get; set; }
     }
 }

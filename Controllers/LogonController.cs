@@ -17,20 +17,20 @@ namespace ThanksCardAPI.Controllers
         {
             _context = context;
 
-            if (_context.Users.Count() == 0)
+            if (_context.Employees.Count() == 0)
             {
                 // Usersテーブルが空なら初期データを作成する。
-                _context.Users.Add(new User { Name = "admin", Password = "admin", IsAdmin = true });
-                _context.Users.Add(new User { Name = "user", Password = "user", IsAdmin = false });
+                _context.Employees.Add(new Employee { EmployeeCd = "a0001",EmployeeName = "admin", Password = "admin"  });
+                _context.Employees.Add(new Employee { EmployeeCd = "u0001", EmployeeName = "user", Password = "user" });
                 _context.SaveChanges();
             }
         }
 
         // POST api/logon
         [HttpPost]
-        public ActionResult<User> Post([FromBody] User user)
+        public ActionResult<Employee> Post([FromBody] Employee employee)
         {
-            var authorizedUser = _context.Users.SingleOrDefault(x => x.Name == user.Name && x.Password == user.Password);
+            var authorizedUser = _context.Employees.SingleOrDefault(x => x.EmployeeCd == employee.EmployeeCd && x.Password == employee.Password);
             if (authorizedUser == null)
             {
                 return NotFound();

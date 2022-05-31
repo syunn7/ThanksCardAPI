@@ -11,25 +11,25 @@ namespace ThanksCardAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Classification : ControllerBase
+    public class ClassificationController : ControllerBase
     {
         private readonly ApplicationContext _context;
 
-        public Classification(ApplicationContext context)
+        public ClassificationController(ApplicationContext context)
         {
             _context = context;
         }
 
         // GET: api/Tags
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Models.Classification>>> GetTag()
+        public async Task<ActionResult<IEnumerable<Models.Classification>>> GetClassification()
         {
             return await _context.Classifications.ToListAsync();
         }
 
         // GET: api/Tags/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Models.Classification>> GetTag(long id)
+        public async Task<ActionResult<Models.Classification>> GetClassification(long id)
         {
             var Classifications = await _context.Classifications.FindAsync(id);
 
@@ -43,7 +43,7 @@ namespace ThanksCardAPI.Controllers
 
         // PUT: api/Tags/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMS_CLASSIFICATION(long id, Models.Classification Classifications)
+        public async Task<IActionResult> PutClassification(long id, Models.Classification Classifications)
         {
             if (id != Classifications.Id)
             {
@@ -58,7 +58,7 @@ namespace ThanksCardAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MS_CLASSIFICATIONExists(id))
+                if (!ClassificationExists(id))
                 {
                     return NotFound();
                 }
@@ -73,17 +73,17 @@ namespace ThanksCardAPI.Controllers
 
         // POST: api/Tags
         [HttpPost]
-        public async Task<ActionResult<Models.Classification>> PostMS_CLASSIFICATION(Models.Classification Classifications)
+        public async Task<ActionResult<Models.Classification>> PostClassification(Models.Classification Classifications)
         {
             _context.Classifications.Add(Classifications);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTag", new { id = Classifications.Id }, Classifications);
+            return CreatedAtAction("GetClassification", new { id = Classifications.Id }, Classifications);
         }
 
         // DELETE: api/Tags/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Models.Classification>> DeleteMS_CLASSIFICATION(long id)
+        public async Task<ActionResult<Models.Classification>> DeleteClassification(long id)
         {
             var Classifications = await _context.Classifications.FindAsync(id);
             if (Classifications == null)
@@ -97,7 +97,7 @@ namespace ThanksCardAPI.Controllers
             return NoContent();
         }
 
-        private bool MS_CLASSIFICATIONExists(long id)
+        private bool ClassificationExists(long id)
         {
             return _context.Classifications.Any(e => e.Id == id);
         }
