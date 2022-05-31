@@ -11,47 +11,47 @@ namespace ThanksCardAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DepartmentsController : ControllerBase
+    public class MS_ORGANIZATIONsController : ControllerBase
     {
         private readonly ApplicationContext _context;
 
-        public DepartmentsController(ApplicationContext context)
+        public MS_ORGANIZATIONsController(ApplicationContext context)
         {
             _context = context;
         }
 
-        // GET: api/Departments
+        // GET: api/ORGANIZATIONs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Department>>> GetDepartments()
+        public async Task<ActionResult<IEnumerable<MS_ORGANIZATION>>> GetORGANIZATIONs()
         {
-            return await _context.Departments.ToListAsync();
+            return await _context.ORGANIZATIONs.ToListAsync();
         }
 
-        // GET: api/Departments/5
+        // GET: api/ORGANIZATIONs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Department>> GetDepartment(long id)
+        public async Task<ActionResult<MS_ORGANIZATION>> GetMS_ORGANIZATION(long id)
         {
-            var department = await _context.Departments.FindAsync(id);
+            var ORGANIZATION = await _context.ORGANIZATIONs.FindAsync(id);
 
-            if (department == null)
+            if (ORGANIZATION == null)
             {
                 return NotFound();
             }
 
-            return department;
+            return ORGANIZATION;
         }
 
-        // PUT: api/Departments/5
+        // PUT: api/ORGANIZATIONs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDepartment(long id, Department department)
+        public async Task<IActionResult> PutMS_ORGANIZATION(long id, MS_ORGANIZATION ORGANIZATION)
         {
-            if (id != department.Id)
+            if (id != ORGANIZATION.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(department).State = EntityState.Modified;
+            _context.Entry(ORGANIZATION).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace ThanksCardAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DepartmentExists(id))
+                if (!ORGANIZATIONExists(id))
                 {
                     return NotFound();
                 }
@@ -75,37 +75,37 @@ namespace ThanksCardAPI.Controllers
         // POST: api/Departments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Department>> PostDepartment(Department department)
+        public async Task<ActionResult<MS_ORGANIZATION>> PostDepartment(MS_ORGANIZATION ORGANIZATIONs)
         {
             // Parent Department には既に存在している部署が入るため、更新の対象から外す。
-            if (department.Parent != null)
+            if (ORGANIZATIONs.Parent != null)
             {
-                _context.Departments.Attach(department.Parent);
+                _context.ORGANIZATIONs.Attach(ORGANIZATIONs.Parent);
             }
 
-            _context.Departments.Add(department);
+            _context.ORGANIZATIONs.Add(ORGANIZATIONs);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
+            return CreatedAtAction("GetDepartment", new { id = ORGANIZATIONs.Id }, ORGANIZATIONs);
         }
 
         // DELETE: api/Departments/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDepartment(long id)
+        public async Task<IActionResult> DeleteMS_ORGANIZATION(long id)
         {
-            var department = await _context.Departments.FindAsync(id);
-            if (department == null)
+            var ORGANIZATIONs = await _context.ORGANIZATIONs.FindAsync(id);
+            if (ORGANIZATIONs == null)
             {
                 return NotFound();
             }
 
-            _context.Departments.Remove(department);
+            _context.ORGANIZATIONs.Remove(ORGANIZATIONs);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool DepartmentExists(long id)
+        private bool ORGANIZATIONExists(long id)
         {
             return _context.Departments.Any(e => e.Id == id);
         }
