@@ -26,7 +26,7 @@ namespace ThanksCardAPI.Controllers
         {
             // Include を指定することで Department (Department) を同時に取得する。
             return await _context.Employees
-                                    .Include(MS_EMPLOYEE => MS_EMPLOYEE.ORGANIZATION)
+                                    .Include(Employee => Employee.Organization)
                                     .ToListAsync();
         }
 

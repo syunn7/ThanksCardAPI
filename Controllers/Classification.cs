@@ -22,14 +22,14 @@ namespace ThanksCardAPI.Controllers
 
         // GET: api/Tags
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MS_CLASSIFICATION>>> GetTag()
+        public async Task<ActionResult<IEnumerable<Models.Classification>>> GetTag()
         {
             return await _context.Classifications.ToListAsync();
         }
 
         // GET: api/Tags/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<MS_CLASSIFICATION>> GetTag(long id)
+        public async Task<ActionResult<Models.Classification>> GetTag(long id)
         {
             var Classifications = await _context.Classifications.FindAsync(id);
 
@@ -43,7 +43,7 @@ namespace ThanksCardAPI.Controllers
 
         // PUT: api/Tags/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMS_CLASSIFICATION(long id, MS_CLASSIFICATION Classifications)
+        public async Task<IActionResult> PutMS_CLASSIFICATION(long id, Models.Classification Classifications)
         {
             if (id != Classifications.Id)
             {
@@ -73,7 +73,7 @@ namespace ThanksCardAPI.Controllers
 
         // POST: api/Tags
         [HttpPost]
-        public async Task<ActionResult<MS_CLASSIFICATION>> PostMS_CLASSIFICATION(MS_CLASSIFICATION Classifications)
+        public async Task<ActionResult<Models.Classification>> PostMS_CLASSIFICATION(Models.Classification Classifications)
         {
             _context.Classifications.Add(Classifications);
             await _context.SaveChangesAsync();
@@ -83,7 +83,7 @@ namespace ThanksCardAPI.Controllers
 
         // DELETE: api/Tags/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<MS_CLASSIFICATION>> DeleteMS_CLASSIFICATION(long id)
+        public async Task<ActionResult<Models.Classification>> DeleteMS_CLASSIFICATION(long id)
         {
             var Classifications = await _context.Classifications.FindAsync(id);
             if (Classifications == null)

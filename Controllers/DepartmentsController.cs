@@ -22,16 +22,16 @@ namespace ThanksCardAPI.Controllers
 
         // GET: api/ORGANIZATIONs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MS_ORGANIZATION>>> GetORGANIZATIONs()
+        public async Task<ActionResult<IEnumerable<Organization>>> GetORGANIZATIONs()
         {
-            return await _context.ORGANIZATIONs.ToListAsync();
+            return await _context.Organizations.ToListAsync();
         }
 
         // GET: api/ORGANIZATIONs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<MS_ORGANIZATION>> GetMS_ORGANIZATION(long id)
+        public async Task<ActionResult<Organization>> GetMS_ORGANIZATION(long id)
         {
-            var ORGANIZATION = await _context.ORGANIZATIONs.FindAsync(id);
+            var ORGANIZATION = await _context.Organizations.FindAsync(id);
 
             if (ORGANIZATION == null)
             {
@@ -44,7 +44,7 @@ namespace ThanksCardAPI.Controllers
         // PUT: api/ORGANIZATIONs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMS_ORGANIZATION(long id, MS_ORGANIZATION ORGANIZATION)
+        public async Task<IActionResult> PutMS_ORGANIZATION(long id, Organization ORGANIZATION)
         {
             if (id != ORGANIZATION.Id)
             {
@@ -75,15 +75,15 @@ namespace ThanksCardAPI.Controllers
         // POST: api/Departments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<MS_ORGANIZATION>> PostDepartment(MS_ORGANIZATION ORGANIZATIONs)
+        public async Task<ActionResult<Organization>> PostDepartment(Organization ORGANIZATIONs)
         {
             // Parent Department には既に存在している部署が入るため、更新の対象から外す。
             if (ORGANIZATIONs.Parent != null)
             {
-                _context.ORGANIZATIONs.Attach(ORGANIZATIONs.Parent);
+                _context.Organizations.Attach(ORGANIZATIONs.Parent);
             }
 
-            _context.ORGANIZATIONs.Add(ORGANIZATIONs);
+            _context.Organizations.Add(ORGANIZATIONs);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetDepartment", new { id = ORGANIZATIONs.Id }, ORGANIZATIONs);
@@ -93,13 +93,13 @@ namespace ThanksCardAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMS_ORGANIZATION(long id)
         {
-            var ORGANIZATIONs = await _context.ORGANIZATIONs.FindAsync(id);
+            var ORGANIZATIONs = await _context.Organizations.FindAsync(id);
             if (ORGANIZATIONs == null)
             {
                 return NotFound();
             }
 
-            _context.ORGANIZATIONs.Remove(ORGANIZATIONs);
+            _context.Organizations.Remove(ORGANIZATIONs);
             await _context.SaveChangesAsync();
 
             return NoContent();
