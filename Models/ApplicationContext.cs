@@ -16,5 +16,6 @@ namespace ThanksCardAPI.Models
         public DbSet<MS_ORGANIZATION> ORGANIZATIONs { get; set; }
         public DbSet<ThanksCard> ThanksCards { get; set; }
         public DbSet<MS_CLASSIFICATION> Classifications { get; set; }
+        public DbSet<ThanksCard2> ThanksCard2s { get; set; }
     }
 }
