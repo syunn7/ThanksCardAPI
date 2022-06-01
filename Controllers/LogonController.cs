@@ -39,4 +39,3 @@ namespace ThanksCardAPI.Controllers
         }
     }
 }
-,kvfvfefvn n 
