@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,8 +26,8 @@ namespace ThanksCardAPI.Controllers
             return await _context.ThanksCards
                                     .Include(ThanksCard => ThanksCard.From)
                                     .Include(ThanksCard => ThanksCard.To)
-                                    .Include(ThanksCard => ThanksCard.ThanksCardTags)
-                                        .ThenInclude(ThanksCardTag => ThanksCardTag.Tag).Where(s => s.Body.Contains(searchThanksCard.SearchWord) || s.Title.Contains(searchThanksCard.SearchWord) || s.From.Name.Contains(searchThanksCard.SearchWord) || s.To.Name.Contains(searchThanksCard.SearchWord)).ToListAsync();
+                                    .Include(ThanksCard => ThanksCard.ThanksCardClassifications)
+                                        .ThenInclude(ThanksCardClassification => ThanksCardClassification.Classification).Where(s => s.Cotents.Contains(searchThanksCard.SearchWord) || s.Title.Contains(searchThanksCard.SearchWord) || s.From.Name.Contains(searchThanksCard.SearchWord) || s.To.Name.Contains(searchThanksCard.SearchWord)).ToListAsync();
         }
     }
-}
+*/

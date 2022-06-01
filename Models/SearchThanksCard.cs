@@ -1,4 +1,5 @@
-﻿#nullable disable
+﻿/*
+#nullable disable
 namespace ThanksCardAPI.Models
 {
     public class SearchThanksCard
@@ -6,3 +7,4 @@ namespace ThanksCardAPI.Models
         public string SearchWord { get; set; }
     }
 }
+*/

@@ -30,12 +30,13 @@ namespace ThanksCardAPI.Controllers
         [HttpPost]
         public ActionResult<Employee> Post([FromBody] Employee employee)
         {
-            var authorizedUser = _context.Employees.SingleOrDefault(x => x.EmployeeCd == employee.EmployeeCd && x.Password == employee.Password);
-            if (authorizedUser == null)
+            var authorizedEmployee = _context.Employees.SingleOrDefault(x => x.EmployeeCd == employee.EmployeeCd && x.Password == employee.Password);
+            if (authorizedEmployee == null)
             {
                 return NotFound();
             }
-            return authorizedUser;
+            return authorizedEmployee;
         }
     }
 }
+,kvfvfefvn n 
