@@ -5,7 +5,7 @@ namespace ThanksCardAPI.Models
     {
         public long Id { get; set; }
         public int OrganizationCd { get; set; }
-        public string? OrganizationName { get; set; }
+        public string OrganizationName { get; set; }
 
         // 部と課のような階層構造を実現するために、自己参照(DepartmentエンティティがDepartmentエンティティとリレーションを持つ)を利用する
         // ParentId には親部署のIdが入る
