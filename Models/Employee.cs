@@ -8,7 +8,7 @@ namespace ThanksCardAPI.Models
         public string EmployeeName { get; set; }
         public string Furigana { get; set; }
         public string Password { get; set; }
-        public string IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }
 
         // 多対1: User エンティティは1つの Department エンティティに属する
         public long? OrganizationId { get; set; }
