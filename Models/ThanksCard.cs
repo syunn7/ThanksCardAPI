@@ -11,8 +11,8 @@ namespace ThanksCardAPI.Models
         public virtual Employee From { get; set; }
         public string Contents { get; set; }
         public DateTime Date { get; set; }
-        public string Kidoku { get; set; }
-        public string Check { get; set; }
+        public bool Kidoku { get; set; }
+        public bool Check { get; set; }
         public string Comment { get; set; }
 
         public virtual ICollection<ThanksCardClassification> ThanksCardClassifications { get; set; }
