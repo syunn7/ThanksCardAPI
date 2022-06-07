@@ -45,5 +45,19 @@ namespace ThanksCardAPI.Controllers
             // TODO: Error Handling
             return thanksCard;
         }
+
+        [HttpDelete("{id}")]//これがないとスワッガーでエラーが起きる
+        public async Task<ActionResult> DeleteThanksCard(long id)
+        {
+            var thankscard = await _context.ThanksCards.FindAsync(id);//指定したIDを持つ感謝カードを探す
+            if (thankscard == null)//そのIDがなかったら404を返す
+            {
+                return NotFound();
+            }
+
+            _context.ThanksCards.Remove(thankscard);//指定したIDの感謝カードを削除する
+            await _context.SaveChangesAsync();//処理を保存する(これがないと削除されないです)
+            return NoContent();
+        }
     }
 }

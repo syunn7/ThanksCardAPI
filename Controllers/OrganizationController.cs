@@ -75,7 +75,7 @@ namespace ThanksCardAPI.Controllers
         // POST: api/Departments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Organization>> PostDepartment(Organization organization)
+        public async Task<ActionResult<Organization>> PostOrganization(Organization organization)
         {
             // Parent Department には既に存在している部署が入るため、更新の対象から外す。
             if (organization.Parent != null)

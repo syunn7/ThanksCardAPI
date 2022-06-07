@@ -5,9 +5,9 @@ namespace ThanksCardAPI.Models
     {
         public long Id { get; set; }
         public string Title { get; set; }
-        public int ToId { get; set; }
+        public long ToId { get; set; }
         public virtual Employee To { get; set; }
-        public int FromId { get; set; }
+        public long FromId { get; set; }
         public virtual Employee From { get; set; }
         public string Contents { get; set; }
         public DateTime Date { get; set; }
