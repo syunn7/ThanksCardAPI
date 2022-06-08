@@ -24,11 +24,7 @@ namespace ThanksCardAPI.Controllers
         public async Task<ActionResult<IEnumerable<Rank>>> GetRanks()
         {
             // ThanksCard を受け取った回数をカウントしてリストで返す
-            return await _context.ThanksCards
-                .GroupBy(t => t.To)
-                .Select(t => new Rank { Name = t.Key.EmployeeName, Count = t.Count() })
-                .OrderByDescending(t => t.Count)
-                .ToListAsync();
+            return await _context.ThanksCards.Include(ThanksCard => ThanksCard.To).GroupBy(t => t.To.EmployeeName).Select(t => new Rank { Name = t.Key, Count = t.Count() }).OrderByDescending(t => t.Count).ToListAsync();
         }
     }
 }

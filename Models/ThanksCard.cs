@@ -14,7 +14,7 @@ namespace ThanksCardAPI.Models
         public bool Kidoku { get; set; }
         public bool Check { get; set; }
         public string Comment { get; set; }
-
+        public int ThanksCount { get; set; }
         public virtual ICollection<ThanksCardClassification> ThanksCardClassifications { get; set; }
     }
 }
